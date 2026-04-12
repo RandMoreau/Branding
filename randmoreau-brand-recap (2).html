@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RandMoreau — Brand Recap</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0d1b2a;
+    --navy-mid: #122337;
+    --navy-light: #1a3050;
+    --copper: #b87333;
+    --copper-light: #d4924a;
+    --clay: #c4745a;
+    --cream: #f5f0e8;
+    --cream-dark: #ede5d8;
+    --text-muted: rgba(245,240,232,0.45);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    background-color: var(--navy);
+    color: var(--cream);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    line-height: 1.75;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 80px 10vw;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(184,115,51,0.25);
+    background-color: var(--navy);
+  }
+
+  .cover::before {
+    content: 'RM';
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(200px, 35vw, 480px);
+    color: rgba(184,115,51,0.06);
+    position: absolute;
+    right: -2vw;
+    top: 50%;
+    transform: translateY(-50%);
+    line-height: 1;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .cover-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 32px;
+  }
+
+  .cover-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(64px, 12vw, 160px);
+    line-height: 0.9;
+    letter-spacing: 2px;
+    color: var(--cream);
+  }
+
+  .cover-title span { color: var(--copper); }
+
+  .cover-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 2.2vw, 24px);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--text-muted);
+    margin-top: 28px;
+    line-height: 1.5;
+  }
+
+  .cover-divider {
+    width: 60px;
+    height: 1px;
+    background: var(--copper);
+    margin: 36px 0;
+  }
+
+  .cover-meta {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+
+  .doc {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 80px 48px 120px;
+  }
+
+  .section {
+    margin-bottom: 72px;
+    padding-bottom: 72px;
+    border-bottom: 1px solid rgba(184,115,51,0.15);
+  }
+
+  .section:last-child { border-bottom: none; }
+
+  .section-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--copper);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(34px, 4.5vw, 52px);
+    letter-spacing: 1.5px;
+    color: var(--cream);
+    line-height: 1;
+    margin-bottom: 32px;
+  }
+
+  .section-title span { color: var(--copper); }
+
+  p {
+    font-size: 16px;
+    line-height: 1.85;
+    color: var(--cream-dark);
+    margin-bottom: 18px;
+    font-weight: 300;
+    max-width: 66ch;
+  }
+
+  p:last-child { margin-bottom: 0; }
+  p strong { font-weight: 600; color: var(--cream); }
+
+  .highlight {
+    border-left: 3px solid var(--copper);
+    padding: 18px 26px;
+    margin: 28px 0;
+    background: rgba(184,115,51,0.07);
+  }
+
+  .highlight p {
+    margin: 0;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--cream);
+    max-width: none;
+    line-height: 1.7;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 24px;
+  }
+
+  .tag {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 7px 16px;
+    border: 1px solid rgba(184,115,51,0.4);
+    color: var(--copper-light);
+    background: rgba(184,115,51,0.06);
+  }
+
+  .tag.filled {
+    background: var(--copper);
+    color: var(--navy);
+    border-color: var(--copper);
+  }
+
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2px;
+    margin-top: 32px;
+  }
+
+  .pillar {
+    background: var(--navy-mid);
+    padding: 26px 24px 30px;
+    border-top: 2px solid var(--copper);
+    position: relative;
+  }
+
+  .pillar-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 44px;
+    color: rgba(184,115,51,0.12);
+    line-height: 1;
+    position: absolute;
+    top: 14px;
+    right: 18px;
+  }
+
+  .pillar-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .pillar h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    letter-spacing: 1px;
+    color: var(--cream);
+    margin-bottom: 10px;
+    line-height: 1.1;
+  }
+
+  .pillar p {
+    font-size: 13.5px;
+    line-height: 1.65;
+    margin: 0;
+    color: rgba(245,240,232,0.6);
+    max-width: none;
+  }
+
+  .formats {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-top: 32px;
+  }
+
+  .format {
+    background: var(--navy-light);
+    padding: 24px 28px;
+    display: grid;
+    grid-template-columns: 210px 1fr;
+    gap: 28px;
+    align-items: start;
+  }
+
+  .format-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 1px;
+    color: var(--copper-light);
+    line-height: 1.25;
+    padding-top: 2px;
+  }
+
+  .format p {
+    font-size: 13.5px;
+    margin: 0;
+    line-height: 1.7;
+    color: rgba(245,240,232,0.65);
+    max-width: none;
+  }
+
+  .palette {
+    display: flex;
+    gap: 2px;
+    margin-top: 28px;
+    flex-wrap: wrap;
+  }
+
+  .swatch {
+    flex: 1;
+    min-width: 100px;
+    height: 110px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 10px 12px;
+  }
+
+  .swatch-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .swatch-hex {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    opacity: 0.6;
+    margin-top: 2px;
+  }
+
+  .platforms {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 2px;
+    margin-top: 28px;
+  }
+
+  .platform {
+    background: var(--navy-mid);
+    padding: 22px 20px;
+  }
+
+  .platform-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 1px;
+    color: var(--cream);
+    margin-bottom: 8px;
+  }
+
+  .platform p {
+    font-size: 13px;
+    margin: 0;
+    color: rgba(245,240,232,0.5);
+    line-height: 1.55;
+    max-width: none;
+  }
+
+  .anchors {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-top: 28px;
+  }
+
+  .anchor {
+    background: var(--navy-mid);
+    padding: 20px 26px;
+    display: flex;
+    gap: 22px;
+    align-items: flex-start;
+  }
+
+  .anchor-icon {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    color: var(--copper);
+    line-height: 1;
+    min-width: 40px;
+    padding-top: 3px;
+  }
+
+  .anchor-body strong {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--cream);
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+
+  .anchor-body p {
+    font-size: 13.5px;
+    margin: 0;
+    color: rgba(245,240,232,0.6);
+    max-width: none;
+    line-height: 1.65;
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-top: 28px;
+  }
+
+  .col-block {
+    background: var(--navy-mid);
+    padding: 24px 26px;
+  }
+
+  .col-block h4 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 19px;
+    letter-spacing: 1px;
+    color: var(--copper);
+    margin-bottom: 12px;
+  }
+
+  .col-block p {
+    font-size: 13px;
+    margin: 0 0 8px;
+    color: rgba(245,240,232,0.6);
+    line-height: 1.6;
+    max-width: none;
+  }
+
+  .col-block p:last-child { margin: 0; }
+
+  .footer {
+    text-align: center;
+    padding: 56px 40px;
+    border-top: 1px solid rgba(184,115,51,0.2);
+    background-color: var(--navy);
+  }
+
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 44px;
+    letter-spacing: 4px;
+    color: var(--cream);
+  }
+
+  .footer-logo span { color: var(--copper); }
+
+  .footer p {
+    font-size: 13px;
+    font-style: italic;
+    color: var(--text-muted);
+    margin-top: 10px;
+    max-width: none;
+  }
+
+  @media print {
+    html, body { background-color: #0d1b2a !important; color: #f5f0e8 !important; }
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    .cover { min-height: auto; page-break-after: always; }
+    .section { page-break-inside: avoid; }
+    .pillar, .format, .platform, .anchor, .col-block, .highlight {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .doc { padding: 56px 24px 80px; }
+    .cover { padding: 56px 6vw; }
+    .format { grid-template-columns: 1fr; gap: 8px; }
+    .two-col { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <span class="cover-label">Brand Identity Document — 2025</span>
+  <div class="cover-title">Rand<span>Moreau</span></div>
+  <div class="cover-subtitle">Tennis Culture. Memorabilia.</div>
+  <div class="cover-divider"></div>
+  <div class="cover-meta">Documento interno · Non per distribuzione</div>
+</div>
+
+<div class="doc">
+
+  <div class="section">
+    <span class="section-number">01</span>
+    <h2 class="section-title">The <span>Name</span></h2>
+
+    <p><strong>Rand</strong> è il soprannome con cui molti chiamano chi c'è dietro questo progetto. Si è affinato nel tempo ed è diventato il brand.</p>
+
+    <p><strong>Moreau</strong> viene da H.G. Wells e da <em>L'Isola del Dottor Moreau</em>. Un riferimento letterario deliberato: Moreau è un uomo che sperimenta oltre ogni limite, costruisce qualcosa che non esisteva su un'isola lontana dal resto del mondo, seguendo una visione che gli altri faticano a comprendere, finché non la vedono.</p>
+
+    <div class="highlight">
+      <p>RandMoreau è un'isola. Un laboratorio dove si sperimenta, si costruisce, si va oltre ciò che molti non riescono neanche ad immaginare.</p>
+    </div>
+
+    <div class="tags">
+      <span class="tag filled">Rand — soprannome</span>
+      <span class="tag">Moreau — H.G. Wells</span>
+      <span class="tag">L'Isola del Dottor Moreau</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <span class="section-number">02</span>
+    <h2 class="section-title">Real <span>Purpose</span></h2>
+
+    <p>RandMoreau nasce da un'ossessione nei confronti del tennis e da un bisogno preciso: tutelare questo sport da chi ne parla senza averlo mai vissuto davvero, cavalcando l'onda della sua popolarità senza capirne il peso.</p>
+
+    <p>Lo scopo reale è costruire una vita su questo progetto. Soldi, reputazione, networking con i giocatori: nell'ordine in cui arrivano, non in quello in cui si vorrebbe. L'obiettivo a medio termine è collaborare con i giocatori come content creator e, eventualmente, come parte di uno staff. L'obiettivo finale è un circolo. Nel mezzo, articoli per editoriali sportivi, collaborazioni, presenza nel mondo del tennis a 360°.</p>
+
+    <div class="highlight">
+      <p>Non "creare contenuti sportivi". Costruire una presenza nel tennis che sia credibile, originale e duratura, partendo da zero, con le mani.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <span class="section-number">03</span>
+    <h2 class="section-title">Visual <span>Identity</span></h2>
+
+    <p><strong>Logo (direzione attuale):</strong> monogramma RM diviso orizzontalmente da un net cord, bianco con bordo scuro, con una pallina color clay appoggiata asimmetricamente sulla rete. L'istante esatto in cui la palla tocca il nastro. Esiste un logo provvisorio basato su questo concept.</p>
+
+    <p><strong>Watermark video:</strong> trattamento bicolore "Rand / Moreau" in blocco stackato, Bebas Neue. Preset riutilizzabile su CapCut. <em>(Non definitivo.)</em></p>
+
+    <p><strong>Tipografia:</strong> da definire nella fase di sviluppo visivo. Il Bebas Neue è già confermato per watermark ed elementi display.</p>
+
+    <div class="palette">
+      <div class="swatch" style="background:#0d1b2a; border: 1px solid rgba(184,115,51,0.35);">
+        <span class="swatch-name" style="color:#b87333;">Navy</span>
+        <span class="swatch-hex" style="color:#b87333;">#0D1B2A</span>
+      </div>
+      <div class="swatch" style="background:#b87333;">
+        <span class="swatch-name" style="color:#0d1b2a;">Copper</span>
+        <span class="swatch-hex" style="color:#0d1b2a;">#B87333</span>
+      </div>
+      <div class="swatch" style="background:#c4745a;">
+        <span class="swatch-name" style="color:#f5f0e8;">Clay</span>
+        <span class="swatch-hex" style="color:#f5f0e8;">#C4745A</span>
+      </div>
+      <div class="swatch" style="background:#f5f0e8;">
+        <span class="swatch-name" style="color:#0d1b2a;">Cream</span>
+        <span class="swatch-hex" style="color:#0d1b2a;">#F5F0E8</span>
+      </div>
+    </div>
+
+    <p style="margin-top:20px; font-size:13px; color:rgba(245,240,232,0.4); font-style:italic; max-width:none;">
+      Navy e rame come palette principale. Nero e clay come variante per contenuti social più diretti.
+    </p>
+  </div>
+
+  <div class="section">
+    <span class="section-number">04</span>
+    <h2 class="section-title">Who We're <span>Talking To</span></h2>
+
+    <p>RandMoreau è un progetto per tutti, senza distinzioni di età o livello tecnico. L'obiettivo è costruire qualcosa che funzioni su più livelli contemporaneamente: chi ha appena scoperto il tennis e chi lo segue da decenni, chi vuole capire la tattica e chi vuole semplicemente godersi il contenuto.</p>
+
+    <p>I più giovani trovano un riferimento. I più grandi rivivono emozioni che conoscono bene. I più esperti trovano analisi che rispettano la loro intelligenza. Chi si avvicina per la prima volta trova un ingresso accessibile, senza barriere.</p>
+
+    <div class="highlight">
+      <p>L'unico requisito per seguire RandMoreau è amare il tennis, o volerlo imparare ad amare.</p>
+    </div>
+
+    <div class="tags">
+      <span class="tag filled">Appassionati di ogni livello</span>
+      <span class="tag">Nuovi fan del tennis</span>
+      <span class="tag">Collezionisti</span>
+      <span class="tag">Chi ama lo sport dal vivo</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <span class="section-number">05</span>
+    <h2 class="section-title">Content <span>Pillars</span></h2>
+
+    <div class="pillars">
+      <div class="pillar">
+        <span class="pillar-num">1</span>
+        <span class="pillar-label">Pillar 01</span>
+        <h3>On-Court Analysis</h3>
+        <p>Analisi tecnica e tattica. Giovani talenti, lettura delle partite, scouting report. Per chi vuole capire, non solo guardare.</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-num">2</span>
+        <span class="pillar-label">Pillar 02</span>
+        <h3>Off-Court Stories</h3>
+        <p>Interviste, pomeriggi con i giocatori, storie dimenticate, aneddoti reali. Il tennis che non finisce nelle statistiche: giocatori, persone, momenti.</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-num">3</span>
+        <span class="pillar-label">Pillar 03</span>
+        <h3>Tour Journey</h3>
+        <p>Copertura diretta dei tornei: day by day, allenamenti, qualificazioni. Come vivere il circuito al 100%, con tutti gli extra che lo rendono un'esperienza.</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-num">4</span>
+        <span class="pillar-label">Pillar 04</span>
+        <h3>Memorabilia & Objects</h3>
+        <p>Collezione, storia degli oggetti, come valorizzarli e custodirli. Costruzione di oggetti custom: poster, personalizzazioni, creazioni uniche.</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-num">5</span>
+        <span class="pillar-label">Pillar 05</span>
+        <h3>Community & Giveaway</h3>
+        <p>Giveaway come strumento di community building: biglietti per tornei, articoli autografati, oggetti custom. Il primo: due biglietti per gli Internazionali. Evoluzione verso una lottery settimanale a ticket da 1€.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <span class="section-number">06</span>
+    <h2 class="section-title">Signature <span>Formats</span></h2>
+
+    <p>I signature format sono i contenuti ricorrenti che danno forma ai pillar. Tutti i titoli sono working titles, in fase di elaborazione.</p>
+
+    <div class="formats">
+      <div class="format">
+        <div class="format-name">What If We Build It</div>
+        <p>Costruzione di un oggetto dal processo creativo alla realizzazione manuale. Fa sentire chi guarda capace di replicarlo e lo rende partecipe. Cadenza bisettimanale o mensile: è un format complesso che richiede tempo e cura.</p>
+      </div>
+      <div class="format">
+        <div class="format-name">An Afternoon With</div>
+        <p>Non un'intervista classica. Un tempo reale con un giocatore, con domande non convenzionali e un rapporto percepibile dal pubblico. Nella fase iniziale può partire come intervista strutturata, con l'obiettivo di evolversi. Il giorno prima si raccolgono le domande della community via stories o commenti.</p>
+      </div>
+      <div class="format">
+        <div class="format-name">Tennis From The Future</div>
+        <p>Analisi tattica di giovani talenti che devono ancora esprimere il loro potenziale. Scoprire insieme i campioni prima che diventino ovvi, costruendo un archivio di previsioni verificabili nel tempo.</p>
+      </div>
+      <div class="format">
+        <div class="format-name">Tennis A Obiettivi&nbsp;<em style="font-size:12px; opacity:0.45;">(WIP)</em></div>
+        <p>Ispirato al format "FIFA a obiettivi" di Just Rohn: all'inizio di ogni torneo si stabilisce una lista di obiettivi a difficoltà crescente. Autografo da un top 50, gadget autografato, intervista a un giocatore. La sfida è personale; la community contribuisce a definire gli obiettivi della lista.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <span class="section-number">07</span>
+    <h2 class="section-title">Platforms & <span>Language</span></h2>
+
+    <p>RandMoreau pubblica su tutte le piattaforme principali. Ogni piattaforma ha un ruolo preciso e non sono intercambiabili.</p>
+
+    <div class="platforms">
+      <div class="platform">
+        <div class="platform-name">Instagram</div>
+        <p>Piattaforma principale. La più curata. Presenza costante, community diretta.</p>
+      </div>
+      <div class="platform">
+        <div class="platform-name">YouTube</div>
+        <p>Per i più appassionati. Analisi estese, contenuti per intero, anche Reels.</p>
+      </div>
+      <div class="platform">
+        <div class="platform-name">TikTok</div>
+        <p>Reach sui più giovani. Contenuti extra, trend-aware, più immediati.</p>
+      </div>
+      <div class="platform">
+        <div class="platform-name">X / Twitter</div>
+        <p>Presenza nella community, informazione in tempo reale, visibilità del nome.</p>
+      </div>
+    </div>
+
+    <p style="margin-top:24px;"><strong>Lingua:</strong> italiano come lingua principale, con sottotitoli in inglese nei video. I post avranno testo in slide e traduzione in inglese tra descrizione e commento. Quando la community internazionale crescerà, si valuterà l'inglese come lingua primaria per determinati contenuti.</p>
+  </div>
+
+  <div class="section">
+    <span class="section-number">08</span>
+    <h2 class="section-title">Tone & <span>Community</span></h2>
+
+    <p>Rispondere ad ogni messaggio non è una strategia di crescita: è un modo di stare nel progetto. La vicinanza tra chi crea e chi segue non si simula, si costruisce giorno per giorno.</p>
+
+    <p>L'obiettivo non è accumulare follower passivi. È costruire qualcosa di cui chi segue si senta parte: proporre domande per le interviste, partecipare ai giveaway, replicare gli oggetti che costruiamo, riconoscersi nei valori del brand.</p>
+
+    <div class="highlight">
+      <p>Chi segue RandMoreau non è un numero. È qualcuno che ha scelto di stare su questo campo.</p>
+    </div>
+
+    <p>RandMoreau crede che il tennis si possa vivere con intelligenza e cognizione di causa, senza rinunciare alla profondità. Questa convinzione attraversa ogni contenuto prodotto.</p>
+  </div>
+
+  <div class="section">
+    <span class="section-number">09</span>
+    <h2 class="section-title">Why <span>Trust Us</span></h2>
+
+    <p>La credibilità di RandMoreau non si basa su un curriculum. Si basa su anni di presenza reale nel mondo del tennis.</p>
+
+    <div class="anchors">
+      <div class="anchor">
+        <div class="anchor-icon">01</div>
+        <div class="anchor-body">
+          <strong>Formazione sul campo</strong>
+          <p>Anni di allenamento insieme a Federico Cinà. Conoscenza tecnica costruita condividendo il campo, non dai video altrui.</p>
+        </div>
+      </div>
+      <div class="anchor">
+        <div class="anchor-icon">02</div>
+        <div class="anchor-body">
+          <strong>Relazioni dirette con i giocatori</strong>
+          <p>Connessioni personali già esistenti, con la consapevolezza che se ne possono costruire molte altre. Accesso al mondo del tennis che non si improvvisa.</p>
+        </div>
+      </div>
+      <div class="anchor">
+        <div class="anchor-icon">03</div>
+        <div class="anchor-body">
+          <strong>Collezione memorabilia</strong>
+          <p>Pezzi conquistati direttamente ai tornei e tramite connessioni personali, accanto ad acquisti mirati fatti con criterio. Include pezzi unici come il seggiolino originale dello Stadio Renzo Barbera.</p>
+        </div>
+      </div>
+      <div class="anchor">
+        <div class="anchor-icon">04*</div>
+        <div class="anchor-body">
+          <strong>Licenza FITP — in sviluppo</strong>
+          <p>Il patentino di coaching è un obiettivo concreto. Quando acquisito, aprirà collaborazioni con giocatori, staff tecnici e strutture sportive, rafforzando ulteriormente l'autorevolezza tecnica del brand.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <span class="section-number">10</span>
+    <h2 class="section-title">Revenue <span>Model</span></h2>
+
+    <p>RandMoreau non dipende da una sola fonte di reddito. Il modello è costruito per crescere in parallelo con il brand.</p>
+
+    <div class="two-col">
+      <div class="col-block">
+        <h4>Fase 1 — Fondamenta</h4>
+        <p>Merchandise fisico (oggetti costruiti, memorabilia).</p>
+        <p>Monetizzazione social (Instagram, YouTube, TikTok).</p>
+        <p>Abbonamenti e canali community.</p>
+        <p>Giveaway come strumento di crescita.</p>
+      </div>
+      <div class="col-block">
+        <h4>Fase 2 — Crescita</h4>
+        <p>Sponsorizzazioni: abbigliamento sportivo, fotografia, hi-tech, brand tennis.</p>
+        <p>Collaborazioni con altri creator.</p>
+        <p>Esperienze personalizzate e coaching (FITP).</p>
+        <p>Articoli e collaborazioni editoriali.</p>
+      </div>
+    </div>
+    <div class="col-block" style="margin-top:2px; background:var(--navy-light);">
+      <h4>Fase 3 — Lungo termine</h4>
+      <p>Prodotti digitali a edizione limitata. Podcast. Proprietà intellettuali (database giocatori, tool di analisi collezione). Apertura del circolo.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <span class="section-number">11</span>
+    <h2 class="section-title">Current <span>Status</span></h2>
+
+    <p>RandMoreau esiste come progetto con una direzione precisa. Ecco cosa c'è oggi:</p>
+
+    <div class="anchors">
+      <div class="anchor">
+        <div class="anchor-icon">✓</div>
+        <div class="anchor-body">
+          <strong>Handle bloccato su tutte le piattaforme</strong>
+          <p>Instagram, TikTok, YouTube, X — identità digitale riservata.</p>
+        </div>
+      </div>
+      <div class="anchor">
+        <div class="anchor-icon">✓</div>
+        <div class="anchor-body">
+          <strong>Bio e logo provvisori pubblicati</strong>
+          <p>Presenza visibile su ogni piattaforma con identità coerente, anche se non definitiva.</p>
+        </div>
+      </div>
+      <div class="anchor">
+        <div class="anchor-icon">✓</div>
+        <div class="anchor-body">
+          <strong>Contenuti pronti per la pubblicazione</strong>
+          <p>Materiale registrato durante i tornei, pronto per le prime settimane di lancio.</p>
+        </div>
+      </div>
+      <div class="anchor">
+        <div class="anchor-icon">✓</div>
+        <div class="anchor-body">
+          <strong>Logo definitivo in sviluppo</strong>
+          <p>Concept chiaro: net cord, monogramma RM, pallina clay. Logo provvisorio già in uso.</p>
+        </div>
+      </div>
+      <div class="anchor">
+        <div class="anchor-icon">→</div>
+        <div class="anchor-body">
+          <strong>Prossimo step</strong>
+          <p>Definire il budget di lancio, finalizzare il logo, strutturare il calendario editoriale delle prime settimane. Il primo giveaway (due biglietti per gli Internazionali) sarà il motore di lancio della community.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <div class="footer-logo">Rand<span>Moreau</span></div>
+  <p>Tennis Culture. Memorabilia.</p>
+</div>
+
+</body>
+</html>
